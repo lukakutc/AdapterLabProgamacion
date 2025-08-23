@@ -1,3 +1,0 @@
-class CSVAdapter extends Persona{
-    
-}
