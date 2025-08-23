@@ -1,4 +1,5 @@
 public class ColeccionPersona {
+    //base de datos principal.
     private Persona[] arrayPersona;
     int indice;
 
@@ -13,8 +14,11 @@ public class ColeccionPersona {
             arrayPersona[indice++] = persona;
             seCargo = true;
         }
-        
+        return seCargo;
     }
     
+    public String toString(){
+        return arrayPersona.toString();
+    }
 
 }

@@ -1,4 +1,4 @@
-public class Persona {
+public class Persona implements IPersona {
     //atributos
     private int edad;
     private String nombre;
@@ -14,5 +14,4 @@ public class Persona {
         return edad;
     }
     
-
 }
