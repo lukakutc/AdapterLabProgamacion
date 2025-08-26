@@ -10,7 +10,7 @@ public class Main {
         List<CSVPersona> personasCSV = new ArrayList<>();
         // Crear 10 Personas normales con datos reales
         baseDeDatos.guardarPersona(new Persona(30123456, "Juan", "Pérez", 28));
-        baseDeDatos.guardarPersona(new Persona(28987654, "María", "Gómez", 35));
+        baseDeDatos.guardarPersona(new Persona(28987654, "María", "sGómez", 35));
         baseDeDatos.guardarPersona(new Persona(32123456, "Carlos", "López", 42));
         baseDeDatos.guardarPersona(new Persona(35123456, "Ana", "Martínez", 29));
         baseDeDatos.guardarPersona(new Persona(37123456, "Luis", "Rodríguez", 31));

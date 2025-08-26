@@ -2,24 +2,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
-
-
 public class BaseDeDatos {
     private List<IPersona> array;
     private Semaphore mutex;
 
     public BaseDeDatos() {
         this.array = new ArrayList<>();
+        this.mutex = new Semaphore(1);
     }
 
     public void guardarPersona(IPersona persona) {
-        //guardar persona es un metodo Thread-Safe, es decir, apto concurrencia. naturalmente, sin mutex arraylist no es concurrente.
+        // guardar persona es un metodo Thread-Safe, es decir, apto concurrencia.
+        // naturalmente, sin mutex arraylist no es concurrente.
         try {
-            mutex.acquire();
+            this.mutex.acquire(1);
             array.add(persona);
         } catch (InterruptedException e) {
         }
-        
+
         mutex.release();
     }
 
