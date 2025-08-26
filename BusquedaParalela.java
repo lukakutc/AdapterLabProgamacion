@@ -8,8 +8,9 @@ public class BusquedaParalela extends RecursiveAction {
     private int inicio;
     private int fin;
     private int dniBuscado;
+    private static volatile boolean encontrado = false; // Para evitar búsquedas innecesarias
     
-    public BusquedaParalela(int[] datos, int inicio, int fin, int dniBuscado) {
+    public BusquedaParalela(BaseDeDatos datos[] datos, int inicio, int fin, int dniBuscado) {
         this.datos = datos;
         this.inicio = inicio;
         this.fin = fin;
@@ -18,6 +19,10 @@ public class BusquedaParalela extends RecursiveAction {
     
     @Override
     protected void compute() {
+        // Si ya se encontró en otra subtarea, terminar
+        if (encontrado) {
+            return;
+        }
         if (fin - inicio <= UMBRAL) {
             buscarSecuencialmente();
         } else {
@@ -33,11 +38,13 @@ public class BusquedaParalela extends RecursiveAction {
     
     private void buscarSecuencialmente() {
         // Realiza la búsqueda secuencialmente en el rango dado
-        boolean encontrado = false;
-        for (int i = inicio; i < fin; i++) {
+        for (int i = inicio; i < fin && !encontrado; i++) {
             if (datos[i].getDni().equals(dniBuscado)) {
+                if (!encontrado){
                 encontrado = true;
                 System.out.println("Se encuentra persona con el dni" + dniBuscado);
+                System.out.println("Nombre: " + datos[i].getNombre());
+                }
             }
         }
         if (!encontrado) {
