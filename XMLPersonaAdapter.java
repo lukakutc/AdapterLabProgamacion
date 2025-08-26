@@ -1,3 +1,4 @@
+
 public class XMLPersonaAdapter implements IPersona {
     private XMLPersona xmlPersonaAdaptado;
 
