@@ -119,12 +119,12 @@ public class Main {
     BaseDeDatos baseDeDatosConcurrente = new BaseDeDatos();
 
      // Procesar XML
-        ConcuPersonasXML tareaXML = new ConcuPersonasXML(personasXML, baseDeDatos);
+        ConcuPersonasXML tareaXML = new ConcuPersonasXML(personasXML, baseDeDatosConcurrente);
         ForkJoinPool pool = new ForkJoinPool();
         pool.invoke(tareaXML);
         
         // Procesar CSV
-        ConcuPersonasCSV tareaCSV = new ConcuPersonasCSV(personasCSV, baseDeDatos);
+        ConcuPersonasCSV tareaCSV = new ConcuPersonasCSV(personasCSV, baseDeDatosConcurrente);
         pool.invoke(tareaCSV);
 
         // Mostrar todas las personas en la base de datos concurrente
