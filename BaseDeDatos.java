@@ -20,4 +20,8 @@ public class BaseDeDatos {
                     ", Edad: " + persona.getEdad());
         }
     }
+
+    public int size() {
+        return array.size();
+    }
 }

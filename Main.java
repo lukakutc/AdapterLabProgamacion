@@ -1,3 +1,5 @@
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
 public class Main {
     public static void main(String[] args) {
         BaseDeDatos baseDeDatos = new BaseDeDatos();
@@ -62,5 +64,11 @@ public class Main {
 
         // Mostrar todas las personas en la base de datos
         baseDeDatos.mostrarPersonas();
+
+        //Busca una persona por su DNI
+        int dniBuscado = 45123456; // DNI a buscar
+        ForkJoinPool pool = new ForkJoinPool(); // Crear un ForkJoinPool
+        BusquedaParalela tarea = new BusquedaParalela(baseDeDatos, 0, baseDeDatos.size, dniBuscado);
+        pool.invoke(tarea); // Iniciar la búsqueda paralela
     }
 }
