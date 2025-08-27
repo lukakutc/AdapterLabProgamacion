@@ -11,10 +11,12 @@ public class ConcuPersonasXML extends RecursiveAction {
         this.baseDeDatos = baseDeDatos;
     }
 
-    @Override
     protected void compute() {
+        System.out.println(Thread.currentThread().getName() + 
+                      " procesando " + personas.size() + " elementos de XML");
         if (personas.size() <= LIMITE) {
             for (XMLPersona persona : personas) {
+                System.out.println(Thread.currentThread().getName() + " guardando persona en lista XML");
                 baseDeDatos.guardarPersona(new XMLPersonaAdapter(persona));
             }
         } else {

@@ -117,15 +117,19 @@ public class Main {
 
     BaseDeDatos baseDeDatosConcurrente = new BaseDeDatos();
 
-     // Procesar XML
+        //Creamos las tareas concurrentes para procesar las listas de personas
         ConcuPersonasXML tareaXML = new ConcuPersonasXML(personasXML, baseDeDatosConcurrente);
-        ForkJoinPool pool = new ForkJoinPool();
-        pool.invoke(tareaXML);
-        
-        // Procesar CSV
         ConcuPersonasCSV tareaCSV = new ConcuPersonasCSV(personasCSV, baseDeDatosConcurrente);
-        pool.invoke(tareaCSV);
-
+        //Creamos el pool de hilos
+        ForkJoinPool pool = new ForkJoinPool();
+        //Mandamos a ejecutar las tareas concurrentes en el pool de hilos
+        pool.execute(tareaXML);
+        pool.execute(tareaCSV); 
+        //Esperamos a que las tareas terminen
+        tareaXML.join();
+        tareaCSV.join();
+        //Obliga a que el pool se cierre una vez que todas las tareas hayan terminado
+        pool.shutdown();
         // Mostrar todas las personas en la base de datos concurrente
         System.out.println("\nPersonas en la base de datos concurrente:");
         baseDeDatosConcurrente.mostrarPersonas();

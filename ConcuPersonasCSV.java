@@ -11,10 +11,13 @@ public class ConcuPersonasCSV extends RecursiveAction {
         this.baseDeDatos = baseDeDatos;
     }
 
-    @Override
     protected void compute() {
+        System.out.println(Thread.currentThread().getName() + 
+                      " procesando " + personas.size() + " elementos de CSV");
         if (personas.size() <= LIMITE) {
             for (CSVPersona persona : personas) {
+                System.out.println(Thread.currentThread().getName() + 
+                      " guardando persona en lista CSV" );
                 baseDeDatos.guardarPersona(new CSVPersonaAdapter(persona));
             }
         } else {
