@@ -15,7 +15,7 @@ public class BaseDeDatos {
         // guardar persona es un metodo Thread-Safe, es decir, apto concurrencia.
         // naturalmente, sin mutex arraylist no es concurrente.
         try {
-            this.mutex.acquire(1);
+            this.mutex.acquire();
             array.add(persona);
         } catch (InterruptedException e) {
         }
